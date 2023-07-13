@@ -11,18 +11,18 @@ import (
 
 var (
 	once sync.Once
-	cfg  *AppConfig
+	cfg  *Config
 )
 
 // GetConfig 获取配置
-func GetConfig() *AppConfig {
+func GetConfig() *Config {
 	once.Do(func() {
-		cfg = &AppConfig{}
+		cfg = &Config{}
 	})
 	return cfg
 }
 
-func (cfg *AppConfig)InitConfig(path string) {
+func (cfg *Config)InitConfig(path string) {
 	viper.AddConfigPath(path)
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
