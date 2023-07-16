@@ -2,11 +2,12 @@ package db
 
 import (
 	"database/sql"
-	"disk-common/conf"
 	"fmt"
 	"sync"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jpc901/disk-common/conf"
+	log "github.com/sirupsen/logrus"
 )
 
 type MySQLConn struct {
@@ -25,8 +26,8 @@ func GetDBInstance() *MySQLConn {
 	return dbConn
 }
 
-func GetConn() *sql.DB {
-	return dbConn.conn
+func (m *MySQLConn)GetConn() *sql.DB {
+	return m.conn
 }
 
 func (m *MySQLConn) Init (config conf.MySQLConfig) {
@@ -40,10 +41,7 @@ func (m *MySQLConn) Init (config conf.MySQLConfig) {
 	var err error
 	m.conn, err = sql.Open("mysql", dsn)
 	if err != nil {
-		panic(err)
-	}
-	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	m.conn.SetMaxIdleConns(config.MaxIdleConns)
@@ -51,6 +49,6 @@ func (m *MySQLConn) Init (config conf.MySQLConfig) {
 
 	err = m.conn.Ping()
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 }

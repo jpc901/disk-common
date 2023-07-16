@@ -15,9 +15,11 @@ CREATE TABLE `tbl_file` (
   KEY `idx_status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 -- 创建用户表
 CREATE TABLE `tbl_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` BIGINT(20) NOT NULL,
   `user_name` varchar(64) NOT NULL DEFAULT '' COMMENT '用户名',
   `user_pwd` varchar(256) NOT NULL DEFAULT '' COMMENT '用户encoded密码',
   `email` varchar(64) DEFAULT '' COMMENT '邮箱',
@@ -30,16 +32,8 @@ CREATE TABLE `tbl_user` (
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '账户状态(启用/禁用/锁定/标记删除等)',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_username` (`user_name`),
+  UNIQUE KEY `uid_unique` (`uid`),
   KEY `idx_status` (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 创建用户token表
-CREATE TABLE `tbl_user_token` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(64) NOT NULL DEFAULT '' COMMENT '用户名',
-  `user_token` char(40) NOT NULL DEFAULT '' COMMENT '用户登录token',
-    PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_username` (`user_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 创建用户文件表
