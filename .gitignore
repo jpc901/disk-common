@@ -24,6 +24,8 @@ go.work
 
 log/
 
+*.sql
+
 test_data
 go.mod
 go.sum
