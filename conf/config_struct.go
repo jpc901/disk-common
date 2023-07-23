@@ -1,12 +1,13 @@
 package conf
 
 type Config struct {
-	Name          string `mapstructure:"name"`
-	Version       string `mapstructure:"version"`
-	*ServerConfig `mapstructure:"server"`
-	*LogConfig    `mapstructure:"log"`
-	*MySQLConfig  `mapstructure:"mysql"`
-	*RedisConfig  `mapstructure:"redis"`
+	Name           string `mapstructure:"name"`
+	Version        string `mapstructure:"version"`
+	*ServerConfig  `mapstructure:"server"`
+	*LogConfig     `mapstructure:"log"`
+	*MySQLConfig   `mapstructure:"mysql"`
+	*RedisConfig   `mapstructure:"redis"`
+	*AccountConfig `mapstructure:"account"`
 }
 
 type ServerConfig struct {
@@ -34,4 +35,9 @@ type RedisConfig struct {
 	DB           int    `mapstructure:"db"`
 	PoolSize     int    `mapstructure:"pool_size"`
 	MinIdleConns int    `mapstructure:"min_idle_conns"`
+}
+
+type AccountConfig struct {
+	Host string `mapstructure:"host"`
+	Port int    `mapstructure:"port"`
 }

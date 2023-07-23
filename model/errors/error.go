@@ -51,6 +51,14 @@ func NewUserSignUpError(detail interface{}) *Error {
 	}
 }
 
+func NewUserSignInError(detail interface{}) *Error {
+	return &Error{
+		Code: UserSignInFailedCode,
+		Message: "user sign in failed",
+		Detail: detail,
+	}
+}
+
 func NewUserExistError(detail interface{}) *Error {
 	return &Error{
 		Code: UserExistCode,

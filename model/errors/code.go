@@ -17,4 +17,5 @@ const (
 	MultipleInitFailedCode  ErrorCode = 1010
 	MergeFailedCode			ErrorCode = 1011
 	ChunkNotExistCode		ErrorCode = 1012
+	UserSignInFailedCode    ErrorCode = 1013
 )
