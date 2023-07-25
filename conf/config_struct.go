@@ -1,13 +1,15 @@
 package conf
 
 type Config struct {
-	Name           string `mapstructure:"name"`
-	Version        string `mapstructure:"version"`
-	*ServerConfig  `mapstructure:"server"`
-	*LogConfig     `mapstructure:"log"`
-	*MySQLConfig   `mapstructure:"mysql"`
-	*RedisConfig   `mapstructure:"redis"`
-	*AccountConfig `mapstructure:"account"`
+	Name            string `mapstructure:"name"`
+	Version         string `mapstructure:"version"`
+	*ServerConfig   `mapstructure:"server"`
+	*LogConfig      `mapstructure:"log"`
+	*MySQLConfig    `mapstructure:"mysql"`
+	*RedisConfig    `mapstructure:"redis"`
+	*AccountConfig  `mapstructure:"account"`
+	*RabbitMQConfig `mapstructure:"rabbitmq"`
+	*OSSConfig      `mapstructure:"oss"`
 }
 
 type ServerConfig struct {
@@ -40,4 +42,19 @@ type RedisConfig struct {
 type AccountConfig struct {
 	Host string `mapstructure:"host"`
 	Port int    `mapstructure:"port"`
+}
+
+type RabbitMQConfig struct {
+	Host              string `mapstructure:"host"`
+	Port              int    `mapstructure:"port"`
+	Username          string `mapstructure:"username"`
+	Password          string `mapstructure:"password"`
+	TransOSSQueueName string `mapstructure:"trans_oss_queue_name"`
+}
+
+type OSSConfig struct {
+	OSSBucket          string `mapstructure:"oss_bucket"`
+	OSSEndpoint        string `mapstructure:"oss_endpoint"`
+	OSSAccessKeyId     string `mapstructure:"oss_ak"`
+	OSSAccessKeySecret string `mapstructure:"oss_sk"`
 }
